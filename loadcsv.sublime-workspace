@@ -1,0 +1,439 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pr",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"wr",
+				"WriteString	int, error ƒ"
+			],
+			[
+				"newr",
+				"NewWriter	*bufio.Writer ƒ"
+			],
+			[
+				"Wr",
+				"WriteCloser	interface ¡"
+			],
+			[
+				"C",
+				"Close	error ƒ"
+			],
+			[
+				"lo",
+				"logfile	*os.File ν"
+			],
+			[
+				"Write",
+				"WriteString	ret int, err error ƒ"
+			],
+			[
+				"log",
+				"logfile	*os.File ν"
+			],
+			[
+				"Op",
+				"OpenFile	file *os.File, err error ƒ"
+			],
+			[
+				"o",
+				"opsWG	sync.WaitGroup ν"
+			],
+			[
+				"re",
+				"record	[]string ν"
+			],
+			[
+				"Std",
+				"Stdout	*os.File ν"
+			],
+			[
+				"p",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"Pr",
+				"Print	n int, err error ƒ"
+			],
+			[
+				"e",
+				"Exit	 ƒ"
+			],
+			[
+				"fi",
+				"filePath	string ν"
+			],
+			[
+				"f",
+				"file	*os.File ν"
+			],
+			[
+				"E",
+				"Exit	 ƒ"
+			],
+			[
+				"P",
+				"Println	n int, err error ƒ"
+			],
+			[
+				"l",
+				"ldap_script"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"k",
+				"kerbo_script"
+			],
+			[
+				"a",
+				"a_famous_double"
+			],
+			[
+				"an",
+				"an_integer"
+			],
+			[
+				"A",
+				"ASSERT"
+			],
+			[
+				"st",
+				"stop_LED"
+			],
+			[
+				"fs",
+				"fstream"
+			],
+			[
+				"LED",
+				"LED0_PATH"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "loadcsv/loadcsv.go",
+			"settings":
+			{
+				"buffer_size": 1416,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/GoSublime/GoSublime.sublime-build",
+	"command_palette":
+	{
+		"height": 243.0,
+		"selected_items":
+		[
+			[
+				"GoSublime: f",
+				"GoSublime: Fmt and save"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add Current File"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 521.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2deb499853c4371624f5a07e27c334aa' + 'bf8c4e67d14fb0525ba4f89698a6d7e1'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/cliddick/workspace/gocode/src/github.com/clintliddick/csv-to-db-loader",
+		"/home/cliddick/workspace/gocode/src/github.com/clintliddick/csv-to-db-loader/loadcsv"
+	],
+	"file_history":
+	[
+		"/home/cliddick/workspace/gocode/src/github.com/clintliddick/csv-to-db-loader/loadcsv/writeit.go",
+		"/home/cliddick/.config/sublime-text-3/Packages/User/GoSublime.sublime-settings",
+		"/home/cliddick/workspace/gocode/src/github.com/clintliddick/csv-to-db-loader/loadcsv.sublime-project",
+		"/home/cliddick/.config/sublime-text-3/Packages/GoSublime/GoSublime.sublime-settings",
+		"/home/cliddick/.config/sublime-text-3/Packages/GoSublime/9o.md",
+		"/home/cliddick/practice/vagrant/Vagrantfile",
+		"/home/cliddick/practice/koans/CppKoans/CMakeLists.txt",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan05_pointers.cpp",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan04_arrays.cpp",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan03_further_types.cpp",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan02_character_types.cpp",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan01_number_types.cpp",
+		"/home/cliddick/practice/koans/CppKoans/koans/koan00_get_started.cpp",
+		"/home/cliddick/practice/koans/CppKoans/cppkoans.sublime-project",
+		"/home/cliddick/practice/koans/CppKoans/headers/koan05_pointers.hpp",
+		"/home/cliddick/practice/koans/CppKoans/build/CMakeFiles/TargetDirectories.txt",
+		"/home/cliddick/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/cliddick/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/cliddick/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/cliddick/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/cliddick/practice/c/hellofile.c"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"filePath",
+			"shift+t",
+			"string",
+			"ctrl+d",
+			">\n",
+			"line",
+			"string"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"filename"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "loadcsv/loadcsv.go",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1416,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								945,
+								945
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 561.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.9o:///home/cliddick/.config/sublime-text-3/Packages/GoSublime":
+	{
+		"height": 118.0
+	},
+	"output.9o:///home/cliddick/.config/sublime-text-3/Packages/User":
+	{
+		"height": 118.0
+	},
+	"output.9o:///home/cliddick/workspace/gocode/src/github.com/clintliddick/csv-to-db-loader/loadcsv":
+	{
+		"height": 212.0
+	},
+	"output.exec":
+	{
+		"height": 118.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 112.0
+	},
+	"project": "loadcsv.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 639.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 223.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

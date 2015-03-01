@@ -1,0 +1,35 @@
+---
+- hosts: all
+  tasks:
+    - name: install sql server
+      apt: name=mysql-server state=present
+      sudo: true
+    - name: install sql client
+      apt: name=mysql-client state=present
+      sudo: true
+    - name: install python mysql helper
+      apt: name=python-mysqldb state=present
+      sudo: true
+    - name: setup test db
+      mysql_db: name=test state=present
+      sudo: true
+    - name: setup golang db user
+      mysql_user: name=golang password=golang priv=*.*:ALL,GRANT state=present host=%
+      sudo: true
+    - name: set mysql bind-address
+      lineinfile: dest=/etc/mysql/my.cnf regexp="^bind-address" line="bind-address = 192.168.50.5"
+      sudo: true
+      notify:
+        - restart mysql
+    - name: set mysql sql_mode
+      lineinfile: dest=/etc/mysql/my.cnf regexp="^sql_mode" line="sql_mode = TRADITIONAL"
+      sudo: true
+      notify:
+        - restart mysql
+    - name: start mysql service
+      service: name=mysql state=started
+      sudo: true
+  handlers:
+    - name: restart mysql
+      service: name=mysql state=restarted
+      sudo: true

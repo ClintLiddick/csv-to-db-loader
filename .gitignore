@@ -1,0 +1,7 @@
+.vagrant/
+
+# executable
+loadcsv/loadcsv
+
+# output
+log.txt
