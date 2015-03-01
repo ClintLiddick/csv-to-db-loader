@@ -4,9 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sync"
+	"time"
 )
 
-func logger(done <-chan bool) chan<- string {
+func logger(wg *sync.WaitGroup) chan<- string {
+	wg.Add(1)
 	var out *bufio.Writer
 
 	logfile, err := os.Create("log.txt")
@@ -19,17 +22,16 @@ func logger(done <-chan bool) chan<- string {
 	logchan := make(chan string)
 
 	go func() {
-		defer logfile.Close()
-		defer out.Flush()
-		defer close(logchan)
-	loop:
+		defer wg.Done()
+		out.WriteString(time.Now().String() + "\n")
 		for {
-			select {
-			case msg := <-logchan:
-				out.WriteString(fmt.Sprintf("%s\n", msg))
-			case <-done:
-				break loop
+			msg, ok := <-logchan
+			if !ok {
+				out.Flush()
+				logfile.Close()
+				return
 			}
+			out.WriteString(fmt.Sprintf("%s\n", msg))
 		}
 	}()
 

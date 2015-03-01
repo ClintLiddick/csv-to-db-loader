@@ -1,18 +1,19 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/csv"
 	"flag"
 	"fmt"
 	"os"
 	"path/filepath"
+	"sync"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
-const DB_STRING = "golang:golang@tcp(192.168.50.5:3306)/test"
+// const DB_STRING = "golang:golang@tcp(192.168.50.5:3306)/test"
 const DB_PREPARE_RUNE = "?"
-const TABLE = "poles"
 const DATE_REGEX = "\\d{2}/\\d{2}/\\d{4}"
 const DATE_FORMAT = "01/02/2006"
 
@@ -25,22 +26,35 @@ var updateFlag = flag.Bool("update", false, "set true to updates existing record
 func init() {
 	// setup short flag
 	flag.StringVar(fileFlag, "f", "upload.csv", "csv file with data to upload")
-	flag.StringVar(tableFlag, "table", "", "table name to load data into")
+	flag.StringVar(tableFlag, "t", "", "table name to load data into")
 	flag.BoolVar(insertFlag, "i", false, "set true to insert new records")
 	flag.BoolVar(updateFlag, "u", false, "set true to updates existing records")
 }
 
 func main() {
+	err := run()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "%s", err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	flag.Parse()
 
 	// validate arguments
 	err := validateArgument()
 
+	// read settings
+	settings, err := readSettings()
+	if err != nil {
+		return fmt.Errorf("%s\n", err)
+	}
+
 	// open file
 	file, err := os.Open(*fileFlag)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "ERROR: Unable to open file \"%s\"\n", *fileFlag)
-		os.Exit(1)
+		return fmt.Errorf("ERROR: Unable to open data file \"%s\"\n", *fileFlag)
 	}
 	defer file.Close()
 
@@ -48,23 +62,48 @@ func main() {
 	csvreader := csv.NewReader(file)
 	records, err := csvreader.ReadAll()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "ERROR: Unable to read file \"%s\"\n", *fileFlag)
-		os.Exit(1)
+		return fmt.Errorf("ERROR: Unable to read data file \"%s\"\n", *fileFlag)
 	}
 
 	// use go-routine to write logfile for performance
-	done := make(chan bool)
-	logchan := logger(done)
+	var wg sync.WaitGroup
+	defer wg.Wait()
+	logchan := logger(&wg)
+	defer close(logchan)
 
-	// insert records
-	err = insertRecords(TABLE, records[0], records[1:], logchan)
+	dsn := settings.generateDsnString()
+	logchan <- fmt.Sprintf("Connecting to database with DSN: %s", dsn)
+
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "%s\n", err)
+		return fmt.Errorf("ERROR: Unable to connect to database\n")
+	}
+	defer db.Close()
+
+	err = db.Ping()
+	if err != nil {
+		return fmt.Errorf("ERROR: Unable to connect to database\n")
 	}
 
-	done <- true
-	close(done)
+	if *insertFlag {
+		// insert records
+		err = insertRecords(db, *tableFlag, records[0], records[1:], logchan)
+		if err != nil {
+			return fmt.Errorf("%s\n", err)
+		}
+		fmt.Println("All records inserted successfully! See log.txt for details")
+	} else if *updateFlag {
+		err = updateRecords(db, *tableFlag, records[0], records[1:], logchan)
+		if err != nil {
+			return fmt.Errorf("%s\n", err)
+		}
+		fmt.Println("All records updated successfully! See log.txt for details")
+	}
 
+	return nil
+
+	// done <- true
+	// close(done)
 }
 
 func validateArgument() error {
@@ -76,12 +115,12 @@ func validateArgument() error {
 	}
 
 	if *insertFlag && *updateFlag {
-		fmt.Fprintf(os.Stderr, "ERROR: Cannot set --insert=true and --update=true. Use separate files.\n")
+		fmt.Fprintf(os.Stderr, "ERROR: Cannot set --insert and --update. Use separate files.\n")
 		err = true
 	}
 
-	if !*insertFlag || *updateFlag {
-		fmt.Fprintf(os.Stderr, "ERROR: Must set either --insert=true or --update=true\n")
+	if !*insertFlag && !*updateFlag {
+		fmt.Fprintf(os.Stderr, "ERROR: Must set either --insert or --update\n")
 		err = true
 	}
 

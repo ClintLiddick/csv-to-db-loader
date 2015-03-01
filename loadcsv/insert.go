@@ -8,19 +8,8 @@ import (
 	"time"
 )
 
-func insertRecords(table string, cols []string, records [][]string, logger chan<- string) error {
+func insertRecords(db *sql.DB, table string, cols []string, records [][]string, logger chan<- string) error {
 	insertErrors := 0
-
-	db, err := sql.Open("mysql", DB_STRING)
-	if err != nil {
-		return err
-	}
-	defer db.Close()
-
-	err = db.Ping()
-	if err != nil {
-		return err
-	}
 
 	// create insert statement string
 	var queryStringBuf bytes.Buffer
@@ -45,9 +34,8 @@ func insertRecords(table string, cols []string, records [][]string, logger chan<
 	// create prepared statement
 	stmt, err := db.Prepare(query)
 	if err != nil {
-		logger <- fmt.Sprintf("ERROR: Unable to prepare statement: %s\n", query)
-		fmt.Printf("%q\n", err)
-		return err
+		logger <- fmt.Sprintf("ERROR: Unable to prepare statement: \"%s\" --- Database returned: %s", query, err)
+		return fmt.Errorf("ERROR: Unable to prepare statement. See log for details")
 	}
 
 	logger <- fmt.Sprintf("INFO: Using prepared statement \"%s\"", query)
